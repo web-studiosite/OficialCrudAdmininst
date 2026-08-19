@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSA - Official Shop Administrator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body>
+    <div class="osa-login-page">
+        <div class="osa-login-box">
+            <div class="osa-login-brand">
+                <h1>OSA</h1>
+                <p>OFFICIAL SHOP ADMINISTRATOR</p>
+            </div>
+            <div class="osa-login-error" id="login-error"></div>
+            <form class="osa-login-form" id="login-form">
+                <div class="osa-form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" required placeholder="seu@email.com">
+                </div>
+                <div class="osa-form-group">
+                    <label>Palavra-passe</label>
+                    <input type="password" id="login-password" required placeholder="••••••••">
+                </div>
+                <button type="submit" id="login-btn">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        initSupabase();
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('login-btn');
+            const errorDiv = document.getElementById('login-error');
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            btn.disabled = true;
+            btn.textContent = 'A entrar...';
+            errorDiv.classList.remove('show');
+
+            try {
+                await Auth.login(email, password);
+                window.location.href = 'app.html';
+            } catch (error) {
+                errorDiv.textContent = 'Erro: ' + (error.message || 'Credenciais invalidas');
+                errorDiv.classList.add('show');
+                btn.disabled = false;
+                btn.textContent = 'Entrar';
+            }
+        });
+
+        (async () => {
+            const isAuth = await Auth.init();
+            if (isAuth) window.location.href = 'app.html';
+        })();
+    </script>
+</body>
+</html>
