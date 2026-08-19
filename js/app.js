@@ -1457,4 +1457,7 @@ const App = {
         } finally {
             UI.hideLoading();
         }
-    },
+    }
+};
+
+window.App = App;
