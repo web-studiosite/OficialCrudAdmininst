@@ -2,8 +2,8 @@
 // Configuração Central
 
 const OSA_CONFIG = {
-    SUPABASE_URL: 'https://seu-projeto.supabase.co',
-    SUPABASE_ANON_KEY: 'sua-chave-anonima-aqui',
+    SUPABASE_URL: 'https://ykpkldndjtwszqtcsiyw.supabase.co',
+    SUPABASE_ANON_KEY: 'sb_publishable_cEhO9MQQliqq6paiFULAEA_HhfKKC0p',
 
     APP_NAME: 'OSA',
     APP_FULL_NAME: 'OFFICIAL SHOP ADMINISTRATOR',
